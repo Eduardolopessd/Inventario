@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Item de Inventário</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css"> </head>
+<body>
+    <header>
+        <h1>Cadastro de Item de Inventário</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="consulta_inventario.html">Consultar Inventário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <form id="cadastroInventarioForm">
+            <div class="form-group">
+                <label for="nomeItem">Nome do Item:</label>
+                <input type="text" id="nomeItem" name="nomeItem" required>
+            </div>
+            <div class="form-group">
+                <label for="Etiqueta">Etiqueta:</label>
+                <input type="text" id="Etiqueta" name="Etiqueta" required>
+            </div>
+            <div class="form-group">
+                <label for="numeroSerie">Número de Série:</label>
+                <input type="text" id="numeroSerie" name="numeroSerie">
+            </div>
+            <div class="form-group">
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario">
+            </div>
+            <div class="form-group">
+                <label for="observacoes">Observações:</label>
+                <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn">Cadastrar</button>
+            <p id="mensagemStatus"></p>
+        </form>
+    </main>
+
+    <script src="cad_inventario.js"></script>
+</body>
+</html>

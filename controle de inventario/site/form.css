@@ -1,0 +1,46 @@
+/* Estilos para Formulários */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Alinha o texto do label à esquerda */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: calc(100% - 22px); /* Considerando padding e border */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Inclui padding e border no width */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+#mensagemStatus {
+    margin-top: 15px;
+    font-weight: bold;
+}

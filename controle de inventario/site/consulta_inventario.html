@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Inventário de TI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="table.css">
+</head>
+<body>
+    <header>
+        <h1>Consulta de Inventário</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cad_inventario.html">Cadastrar Item</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar por nome, etiqueta, série, usuário...">
+            <button id="searchButton" class="btn">Buscar</button>
+        </div>
+
+        <table id="tabelaInventario">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Etiqueta</th>
+                    <th>Nº Série</th>
+                    <th>Usuário</th>
+                    <th>Observações</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7">Carregando itens...</td>
+                </tr>
+            </tbody>
+        </table>
+        <p id="mensagemConsulta"></p>
+    </main>
+    <script src="consulta_inventario.js"></script>
+</body>
+</html>
