@@ -1,122 +1,95 @@
-----------------------------------------------------------------English version------------------------------------------------------------------------------
+----------------------------------------------------------------English version-----------------------------------------------------------------------------
 
-IT Inventory Project (RESTful API with Spring Boot, MySQL, and Web Frontend)
-This project consists of a RESTful API for IT inventory management, developed with Spring Boot using Maven for dependency management and MySQL as the database. The application is containerized using Docker and orchestrated with Docker Compose. The web frontend, built with pure HTML, CSS, and JavaScript, is served by an Nginx reverse proxy that also routes requests to the API.
+# IT Inventory Control Project (Spring Boot RESTful API with MySQL and Web Frontend)
 
-🚀 Technologies Used
-Backend (RESTful API):
+This project consists of a RESTful API for IT inventory control, developed with Spring Boot, using Maven for dependency management and MySQL as the database. The application is containerized using Docker and orchestrated with Docker Compose. The web frontend, built with pure HTML, CSS, and JavaScript, is served by an Nginx reverse proxy which also routes requests to the API.
 
-Java 21
+##  Technologies Used
 
-Spring Boot (v3.2.7)
+* **Backend (RESTful API):**
+    * Java 21
+    * Spring Boot (v3.2.7)
+    * Spring Data JPA
+    * Maven (v3.9.7)
+    * Lombok
+    * MySQL Connector/J
+    * Spring Boot Starter Validation
+* **Database:**
+    * MySQL 8
+* **Frontend (Web):**
+    * HTML5
+    * CSS3
+    * JavaScript
+* **Containerization and Orchestration:**
+    * Docker
+    * Docker Compose
+* **Reverse Proxy and Web Server:**
+    * Nginx
 
-Spring Data JPA
+##  Project Structure
 
-Maven (v3.9.7)
+* `pom.xml`: Maven configurations for the Spring Boot project (backend).
+* `Dockerfile`: Defines the steps to build the Docker image for the REST API.
+* `docker-compose.yml`: Defines and orchestrates the three main services: `banco` (MySQL), `apirest` (Spring Boot API), and `frontend` (Nginx).
+* `nginx.conf`: Nginx configuration to serve the frontend static files and act as a reverse proxy for the API.
+* `src/`: Contains the source code for the Spring Boot application (backend).
+    * `src/main/java/com/invent/inventario/`: API packages (Controller, Service, Repository, Entity, Exception).
+    * `src/main/resources/application.properties`: Spring Boot application configurations.
+* `site/`: Directory that should contain the web frontend files (HTML, CSS, JavaScript).
+    * `site/index.html`: Home page.
+    * `site/cad_inventario.html`: Item registration page.
+    * `site/consulta_inventario.html`: Item consultation page.
+    * `site/style.css`: General website styles.
+    * `site/form.css`: Specific styles for forms.
+    * `site/table.css`: Specific styles for tables.
+    * `site/script.js`: General website script.
+    * `site/cad_inventario.js`: JavaScript logic for the registration page.
+    * `site/consulta_inventario.js`: JavaScript logic for the consultation page.
 
-Lombok
+##  Setup and Execution
 
-MySQL Connector/J
+### Prerequisites
 
-Spring Boot Starter Validation
+Make sure you have the following tools installed on your machine:
 
-Database:
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (includes Docker Engine and Docker Compose)
 
-MySQL 8
+### Steps to Run
 
-Frontend (Web):
+1.  **Clone the repository:**
+    ```bash
+    git clone <YOUR_REPOSITORY_URL>
+    cd <your_repository_name>
+    ```
 
-HTML5
+2.  **Build and start the services with Docker Compose:**
+    Navigate to the project's root directory where `docker-compose.yml` is located and execute:
+    ```bash
+    docker-compose up --build -d
+    ```
+    * `--build`: Ensures that Docker images are built (or rebuilt) before starting the containers.
+    * `-d`: Starts the containers in "detached" mode (in the background).
 
-CSS3
+3.  **Check the service status:**
+    ```bash
+    docker-compose ps
+    ```
+    You should see the `banco`, `apirest`, and `frontend` (Nginx) services in `Up` and `healthy` (for the database) states.
 
-JavaScript
+### Accessing the Application
 
-Containerization and Orchestration:
+* **Web Frontend:** The frontend will be available on port `8030` of your host.
+    Access: `http://localhost:8030`
+* **RESTful API:** The API will be available internally to Nginx on port `8080` of the `apirest` container, and externally via Nginx on port `8030` under the `/api/` path.
+    Direct access example (if port `8031` is mapped in `docker-compose.yml` for the API): `http://localhost:8031/api/inventario/itens`
 
-Docker
+##  Stopping Services
 
-Docker Compose
+To stop and remove the containers, networks, and volumes created by Docker Compose:
 
-Reverse Proxy and Web Server:
-
-Nginx
-
-📦 Project Structure
-pom.xml: Maven configuration for the Spring Boot project (backend).
-
-Dockerfile: Defines build steps for the REST API Docker image.
-
-docker-compose.yml: Defines and orchestrates three core services: db (MySQL), apirest (Spring Boot API), and frontend (Nginx).
-
-nginx.conf: Nginx configuration to serve frontend static files and act as a reverse proxy for the API.
-
-src/: Contains Spring Boot application source code (backend).
-
-src/main/java/com/invent/inventario/: API packages (Controller, Service, Repository, Entity, Exception).
-
-src/main/resources/application.properties: Spring Boot application settings.
-
-site/: Directory containing web frontend files (HTML, CSS, JavaScript).
-
-site/index.html: Homepage.
-
-site/cad_inventario.html: Item registration page.
-
-site/consulta_inventario.html: Item query page.
-
-site/style.css: General site styles.
-
-site/form.css: Form-specific styles.
-
-site/table.css: Table-specific styles.
-
-site/script.js: General site script.
-
-site/cad_inventario.js: JavaScript logic for registration page.
-
-site/consulta_inventario.js: JavaScript logic for query page.
-
-⚙️ Setup and Execution
-Prerequisites
-Ensure you have these tools installed:
-
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (inclui Docker Engine e Docker Compose)
-
-Execution Steps
-Clone the repository:
-
-bash
-git clone <YOUR_REPO_URL>
-cd <your_repo_name>
-Build and start services with Docker Compose:
-Navigate to the project root (where docker-compose.yml is located) and run:
-
-bash
-docker-compose up --build -d
---build: Ensures Docker images are built/rebuilt before starting containers.
-
--d: Starts containers in detached mode (background).
-
-Check service status:
-
-bash
-docker-compose ps
-You should see db, apirest, and frontend (Nginx) services with Up and healthy status (for the database).
-
-Accessing the Application
-Web Frontend: Available on host port 8030:
-Access: http://localhost:8030
-
-RESTful API: Internally accessible to Nginx on port 8080 of the apirest container, and externally via Nginx on port 8030 under /api/.
-Direct access example (if port 8031 is mapped to the API in docker-compose.yml): http://localhost:8031/api/inventario/itens
-
-🛑 Stopping Services
-To stop and remove containers, networks, and volumes created by Docker Compose:
-
-bash
+```bash
 docker-compose down
-
+```
 
 ------------------------------------------------------------------Portuguese version----------------------------------------------------------------------- 
 
@@ -124,7 +97,7 @@ docker-compose down
 
 Este projeto consiste em uma API RESTful para controle de inventário de TI, desenvolvida com Spring Boot, utilizando Maven para gerenciamento de dependências e MySQL como banco de dados. A aplicação é conteinerizada usando Docker e orquestrada com Docker Compose. O frontend web, construído com HTML, CSS e JavaScript puro, é servido por um proxy reverso Nginx que também roteia as requisições para a API.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * **Backend (API RESTful):**
     * Java 21
@@ -146,7 +119,7 @@ Este projeto consiste em uma API RESTful para controle de inventário de TI, des
 * **Proxy Reverso e Servidor Web:**
     * Nginx
 
-## 📦 Estrutura do Projeto
+## Estrutura do Projeto
 
 * `pom.xml`: Configurações do Maven para o projeto Spring Boot (backend).
 * `Dockerfile`: Define as etapas para construir a imagem Docker da API REST.
@@ -166,7 +139,7 @@ Este projeto consiste em uma API RESTful para controle de inventário de TI, des
     * `site/cad_inventario.js`: Lógica JavaScript para a página de cadastro.
     * `site/consulta_inventario.js`: Lógica JavaScript para a página de consulta.
 
-## ⚙️ Configuração e Execução
+##  Configuração e Execução
 
 ### Pré-requisitos
 
@@ -203,7 +176,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 * **API RESTful:** A API estará disponível internamente para o Nginx na porta `8080` do contêiner `apirest`, e externamente através do Nginx na porta `8030` sob o caminho `/api/`.
     Exemplo de acesso direto (se a porta `8031` estiver mapeada no `docker-compose.yml` para a API): `http://localhost:8031/api/inventario/itens`
 
-## 🛑 Parando os Serviços
+## Parando os Serviços
 
 Para parar e remover os contêineres, redes e volumes criados pelo Docker Compose:
 
