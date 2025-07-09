@@ -19,8 +19,8 @@ table {
 }
 
 table thead th {
-    background-color: #007bff;
-    color: white;
+    background-color: #ff8800;
+    color: rgb(0, 0, 0);
     padding: 10px;
     text-align: center;
     border-bottom: 2px solid #ddd;

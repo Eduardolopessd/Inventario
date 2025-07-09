@@ -1,55 +1,67 @@
 package com.invent.inventario.entity;
 
-import jakarta.persistence.Column; // Pacote para anotações JPA (Java Persistence API)
-import jakarta.persistence.Entity; // Anotação para validação de campos não nulos/vazios
-import jakarta.persistence.GeneratedValue; // Anotação para validação de tamanho de string
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull; // Importação para validação de boolean
 import jakarta.validation.constraints.Size;
 
 /**
  * Entidade que representa um item de inventário no banco de dados.
  * Mapeia a classe para uma tabela no banco de dados.
  */
-@Entity // Indica que esta classe é uma entidade JPA e será mapeada para uma tabela.
-@Table(name = "inventario") // Especifica o nome da tabela no banco de dados.
+@Entity
+@Table(name = "inventario")
 public class Inventario {
 
-    @Id // Marca o campo como chave primária da tabela.
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Configura a estratégia de geração de valor para a chave primária (auto-incremento).
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do item é obrigatório") // Valida que o campo 'nome' não pode ser nulo ou vazio.
-    @Column(nullable = false) // Mapeia o campo para uma coluna no banco de dados, indicando que não pode ser nula.
+    @NotBlank(message = "O nome do item é obrigatório")
+    @Column(nullable = false)
     private String nome;
 
-    private Integer etiqueta; // Campo para a etiqueta do item.
+    private Integer etiqueta;
 
-    private String numeroSerie; // Campo para o número de série.
+    private String numeroSerie;
 
-    private String usuario; // Campo para o usuário associado ao item.
+    private String usuario;
 
-    @Size(max = 500, message = "As observações não podem ter mais de 500 caracteres") // Valida o tamanho máximo da string.
-    @Column(length = 500) // Define o comprimento máximo da coluna no banco de dados.
+    @Size(max = 500, message = "As observações não podem ter mais de 500 caracteres")
+    @Column(length = 500)
     private String observacoes;
+
+    @NotNull(message = "O status 'ativo' é obrigatório") // Validação para o campo ativo
+    @Column(nullable = false)
+    private Boolean ativo; // ALTERADO: Agora é Boolean (classe wrapper) para permitir null
+
+    @NotBlank(message = "O setor é obrigatório") // Validação para o campo setor
+    @Size(max = 100, message = "O setor não pode ter mais de 100 caracteres")
+    @Column(nullable = false, length = 100)
+    private String setor; // Novo campo: setor onde o item está localizado
 
     // Construtor padrão (necessário para JPA)
     public Inventario() {
     }
 
     // Construtor com todos os campos (útil para criação de objetos)
-    public Inventario(Long id, String nome, Integer etiqueta, String numeroSerie, String usuario, String observacoes) {
+    public Inventario(Long id, String nome, Integer etiqueta, String numeroSerie, String usuario, String observacoes, Boolean ativo, String setor) {
         this.id = id;
         this.nome = nome;
         this.etiqueta = etiqueta;
         this.numeroSerie = numeroSerie;
         this.usuario = usuario;
         this.observacoes = observacoes;
+        this.ativo = ativo; // Agora aceita Boolean
+        this.setor = setor;
     }
 
-    // Métodos Getters e Setters para todos os campos (Lombok pode gerar automaticamente com @Data)
+    // Métodos Getters e Setters para todos os campos
     public Long getId() {
         return id;
     }
@@ -96,5 +108,21 @@ public class Inventario {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public Boolean getAtivo() { // ALTERADO: Getter agora retorna Boolean
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) { // ALTERADO: Setter agora aceita Boolean
+        this.ativo = ativo;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
     }
 }

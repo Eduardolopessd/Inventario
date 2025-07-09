@@ -1,26 +1,22 @@
 const API_BASE_URL = 'http://localhost:8031/api/inventario/itens'; // URL base da API
 
 document.addEventListener('DOMContentLoaded', () => {
-    // REMOVENDO ESTAS DUAS LINHAS, pois o script já está incluído no HTML:
-    // const script = document.createElement('script');
-    // document.head.appendChild(script);
-
-    // 1. OBTENHA A REFERÊNCIA AO FORMULÁRIO PELO SEU ID
     const form = document.getElementById('cadastroInventarioForm');
-    const mensagemStatus = document.getElementById('mensagemStatus'); // Também obtenha a referência para a mensagem de status
+    const mensagemStatus = document.getElementById('mensagemStatus');
 
-    // 2. VERIFIQUE SE O FORMULÁRIO FOI ENCONTRADO ANTES DE TENTAR USÁ-LO
     if (form) {
         form.addEventListener('submit', async (event) => {
             event.preventDefault(); // Impede o envio padrão do formulário
 
+            // Coleta os dados do formulário, incluindo os novos campos
             const itemData = {
                 nome: document.getElementById('nomeItem').value,
-                // Corrigido: `Etiqueta` no HTML, mas `etiqueta` no JS. Use o ID correto.
-                etiqueta: parseInt(document.getElementById('Etiqueta').value), 
+                etiqueta: parseInt(document.getElementById('Etiqueta').value),
                 numeroSerie: document.getElementById('numeroSerie').value,
                 usuario: document.getElementById('usuario').value,
                 observacoes: document.getElementById('observacoes').value,
+                ativo: document.getElementById('ativo').checked, // Novo: valor do checkbox
+                setor: document.getElementById('setor').value,   // Novo: valor do select
             };
 
             // Validação básica para a etiqueta ser um número válido
@@ -30,12 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Validação para o campo setor
+            if (!itemData.setor) {
+                mensagemStatus.textContent = 'Por favor, selecione um setor para o item.';
+                mensagemStatus.style.color = 'red';
+                return;
+            }
+
             mensagemStatus.textContent = 'Enviando dados...';
             mensagemStatus.style.color = 'black'; // Resetar a cor
 
             try {
                 // Use a URL relativa para o proxy do Nginx
-                const response = await fetch('/api/inventario/itens', { 
+                const response = await fetch('/api/inventario/itens', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -47,6 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     mensagemStatus.textContent = 'Item cadastrado com sucesso!';
                     mensagemStatus.style.color = 'green';
                     form.reset(); // Limpa o formulário após o sucesso
+                    // Garante que o checkbox 'ativo' volte ao estado padrão (checado)
+                    document.getElementById('ativo').checked = true;
+                    // Garante que o select 'setor' volte à opção padrão
+                    document.getElementById('setor').value = '';
                 } else {
                     const errorData = await response.json();
                     const errorMessage = errorData.message || response.statusText || 'Erro desconhecido';

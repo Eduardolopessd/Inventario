@@ -9,7 +9,7 @@ services:
       MYSQL_PASSWORD: inventario_password
 
     ports:
-      - "3306:3306" # Porta do host : Porta do contêiner MySQL
+      - "3309:3306" # Porta do host : Porta do contêiner MySQL
     volumes:
       - db_data:/var/lib/mysql
     networks:

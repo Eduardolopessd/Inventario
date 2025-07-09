@@ -18,8 +18,8 @@ body {
 
 /* Cabeçalho */
 header {
-    background-color: #007bff;
-    color: white;
+    background-color: #ff8800;
+    color: rgb(0, 0, 0);
     padding: 1rem 0;
     text-align: center;
 }
@@ -40,7 +40,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: bold;
 }
@@ -68,4 +68,10 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+.filterAtivo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }

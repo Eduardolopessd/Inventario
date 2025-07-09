@@ -19,6 +19,20 @@
 
     <main class="container">
         <form id="cadastroInventarioForm">
+            <!-- Novo campo: Setor -->
+            <div class="form-group">
+                <label for="setor">Setor:</label>
+                <select id="setor" name="setor" required>
+                    <option value="">Selecione um setor</option>
+                    <option value="TI">TI</option>
+                    <option value="Vendas">Vendas</option>
+                    <option value="Financeiro">Financeiro</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Expedição">Expedição</option>
+                    <option value="Compras">Compras</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label for="nomeItem">Nome do Item:</label>
                 <input type="text" id="nomeItem" name="nomeItem" required>
@@ -35,6 +49,13 @@
                 <label for="usuario">Usuário:</label>
                 <input type="text" id="usuario" name="usuario">
             </div>
+                        <!-- Novo campo: Ativo -->
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="ativo" name="ativo" checked>
+                <label for="ativo">Item Ativo</label>
+            </div>
+
+
             <div class="form-group">
                 <label for="observacoes">Observações:</label>
                 <textarea id="observacoes" name="observacoes" rows="4"></textarea>

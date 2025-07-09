@@ -8,22 +8,54 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #343a40; /* Cor mais escura para labels */
 }
 
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group textarea,
-.form-group select {
+.form-group select { /* Aplica estilos também aos selects */
     width: calc(100% - 22px); /* Considerando padding e border */
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #ced4da; /* Borda mais suave */
+    border-radius: 6px; /* Cantos mais arredondados */
     box-sizing: border-box; /* Inclui padding e border no width */
+    font-size: 1rem;
 }
 
 .form-group textarea {
     resize: vertical; /* Permite redimensionar verticalmente */
 }
+
+/* Estilos para o grupo de checkbox */
+.form-group.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre o checkbox e o label */
+    margin-bottom: 15px;
+}
+
+.form-group.checkbox-group input[type="checkbox"] {
+    width: auto; /* Reseta a largura para o padrão de checkbox */
+    margin: 0; /* Remove margens padrão */
+    transform: scale(1.2); /* Aumenta um pouco o tamanho do checkbox */
+    accent-color: #007bff; /* Cor de destaque para o checkbox (para navegadores modernos) */
+}
+
+/* Estilos para o select */
+.form-group select {
+    background-color: white; /* Fundo branco para selects */
+    cursor: pointer;
+    appearance: none; /* Remove a seta padrão do select em alguns navegadores */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.4H18.8c-7.7%200-13.5%204.4-13.2%206.4l133.4%20139.2c1.8%201.5%203.8%202.2%205.8%202.2s4%20-.7%205.8-2.2l133.4-139.2z%22%2F%3E%3C%2Fsvg%3E'); /* Seta customizada */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px; /* Espaço para a seta customizada */
+}
+
 
 .btn {
     background-color: #28a745;
@@ -43,4 +75,8 @@
 #mensagemStatus {
     margin-top: 15px;
     font-weight: bold;
+}
+
+.filterSetor{
+    border-radius: 10px ;
 }

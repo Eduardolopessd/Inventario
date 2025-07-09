@@ -23,6 +23,24 @@
             <input type="text" id="searchInput" placeholder="Buscar por nome, etiqueta, série, usuário...">
             <button id="searchButton" class="btn">Buscar</button>
         </div>
+                <!-- Novo campo de filtro: Status Ativo -->
+            <select id="filterAtivo">
+                <option value="">Todos os Status</option>
+                <option value="true">Ativo</option>
+                <option value="false">Inativo</option>
+            </select>
+
+            <!-- Novo campo de filtro: Setor -->
+            <select id="filterSetor">
+                <option value="">Todos os Setores</option>
+                    <option value="TI">TI</option>
+                    <option value="Vendas">Vendas</option>
+                    <option value="Financeiro">Financeiro</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Expedição">Expedição</option>
+                    <option value="Compras">Compras</option>
+            </select>
 
         <table id="tabelaInventario">
             <thead>
@@ -33,6 +51,8 @@
                     <th>Nº Série</th>
                     <th>Usuário</th>
                     <th>Observações</th>
+                    <th>Status</th>
+                    <th>Setor</th>
                     <th>Ações</th>
                 </tr>
             </thead>
